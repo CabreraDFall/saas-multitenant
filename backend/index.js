@@ -3,7 +3,8 @@ import cors from "cors";
 import { PrismaClient } from "./generated/prisma/index.js"; // o path correcto
 const prisma = new PrismaClient();
 
-
+const PORT = 4000;
+const HOST = '127.0.0.1';
 
 const app = express();
 app.use(cors());
@@ -32,4 +33,10 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
-app.listen(4000, () => console.log("API corriendo en http://localhost:4000"));
+app.get("/", (req, res) => {
+  res.send("Hello, world!");
+});
+
+app.listen(PORT, HOST, () => {
+    console.log(`API corriendo en http://${HOST}:${PORT}`);
+});
